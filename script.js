@@ -30,14 +30,14 @@ const goalTypeIcons = {
 
 // Colors for charts and UI
 const colors = {
-    'Learning': 'rgba(106, 90, 205, 0.8)', // Slate Blue
-    'MCA': 'rgba(147, 112, 219, 0.8)', // Medium Purple
-    'Projects': 'rgba(186, 85, 211, 0.8)', // Medium Orchid
-    'Money': 'rgba(218, 112, 214, 0.8)', // Orchid
-    'Health': 'rgba(238, 130, 238, 0.8)', // Violet
-    'completed': 'rgba(74, 222, 128, 0.8)', // Green
-    'in-progress': 'rgba(96, 165, 250, 0.8)', // Blue
-    'overdue': 'rgba(239, 68, 68, 0.8)' // Red
+'Learning': 'rgba(52, 152, 219, 0.8)',       // Bright Blue
+  'MCA': 'rgba(231, 76, 60, 0.8)',             // Strong Red
+  'Projects': 'rgba(46, 204, 113, 0.8)',       // Bright Green
+  'Money': 'rgba(241, 196, 15, 0.8)',          // Golden Yellow
+  'Health': 'rgba(155, 89, 182, 0.8)',         // Deep Purple
+  'completed': 'rgba(74, 222, 128, 0.8)',      // Light Green
+  'in-progress': 'rgba(96, 165, 250, 0.8)',    // Light Blue
+  'overdue': 'rgba(239, 68, 68, 0.8)'          // Light Red 
 };
 
 // State
