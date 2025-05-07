@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Tracker 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <div class="gradient"></div>
+        <div class="particles"></div>
+    </div>
+    
+    <div class="app-container">
+        <header>
+            <h1>Goal Tracker <span>2025</span></h1>
+            <div class="summary-stats">
+                <div class="stat">
+                    <span id="total-goals">0</span>
+                    <p>Total Goals</p>
+                </div>
+                <div class="stat">
+                    <span id="completed-goals">0</span>
+                    <p>Completed</p>
+                </div>
+                <div class="stat">
+                    <span id="in-progress-goals">0</span>
+                    <p>In Progress</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <nav class="category-nav">
+                <button class="cat-btn active" data-category="all">
+                    <i class="fas fa-globe"></i> All Goals
+                </button>
+                <button class="cat-btn" data-category="Learning">
+                    <i class="fas fa-book"></i> Learning
+                </button>
+                <button class="cat-btn" data-category="MCA">
+                    <i class="fas fa-graduation-cap"></i> MCA
+                </button>
+                <button class="cat-btn" data-category="Projects">
+                    <i class="fas fa-project-diagram"></i> Projects
+                </button>
+                <button class="cat-btn" data-category="Money">
+                    <i class="fas fa-dollar-sign"></i> Money
+                </button>
+                <button class="cat-btn" data-category="Health">
+                    <i class="fas fa-heartbeat"></i> Health
+                </button>
+            </nav>
+
+            <div class="content-area">
+                <div class="dashboard-section">
+                    <div class="visualization-container">
+                        <div class="chart-container">
+                            <canvas id="goalTypeChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="goals-overview">
+                        <div class="goals-header">
+                            <h2>Goals Overview</h2>
+                            <button id="add-goal-btn" class="btn primary-btn">
+                                <i class="fas fa-plus"></i> Add Goal
+                            </button>
+                        </div>
+                        <div class="goals-list" id="goals-list">
+                            <!-- Goals will be populated here -->
+                            <div class="empty-state">
+                                <i class="fas fa-tasks"></i>
+                                <p>No goals added yet. Click "Add Goal" to get started!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding/editing goal -->
+    <div class="modal" id="goal-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Goal</h3>
+                <button class="close-btn" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="goal-form">
+                <input type="hidden" id="goal-id">
+                <div class="form-group">
+                    <label for="goal-type">Goal Type</label>
+                    <select id="goal-type" required>
+                        <option value="">Select Type</option>
+                        <option value="Learning">Learning</option>
+                        <option value="MCA">MCA</option>
+                        <option value="Projects">Projects</option>
+                        <option value="Money">Money</option>
+                        <option value="Health">Health</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goal-task">Goal Task</label>
+                    <input type="text" id="goal-task" placeholder="Enter your goal" required>
+                </div>
+                <div class="form-group">
+                    <label for="goal-date">Target Date</label>
+                    <input type="date" id="goal-date" required>
+                </div>
+                <div class="form-group" id="completion-date-group">
+                    <label for="completion-date">Completion Date</label>
+                    <input type="date" id="completion-date">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn secondary-btn" id="cancel-btn">Cancel</button>
+                    <button type="submit" class="btn primary-btn" id="save-goal-btn">Save Goal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content confirmation-content">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+                <button class="close-btn" id="close-confirmation">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p id="confirmation-message">Are you sure you want to delete this goal?</p>
+            <div class="form-actions">
+                <button type="button" class="btn secondary-btn" id="cancel-confirmation-btn">Cancel</button>
+                <button type="button" class="btn danger-btn" id="confirm-action-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js" defer></script>
+
+</body>
+</html>
