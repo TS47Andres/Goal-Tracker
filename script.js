@@ -281,7 +281,7 @@ function updateCharts() {
             datasets: [{
                 data: typeData,
                 backgroundColor: typeColors,
-                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderColor: 'rgba(0, 0, 0, 0.1)',
                 borderWidth: 1
             }]
         },
@@ -292,20 +292,27 @@ function updateCharts() {
                 legend: {
                     position: 'right',
                     labels: {
-                        color: 'rgba(255, 255, 255, 0.8)',
+                        color: 'var(--text-dark)',
                         font: {
-                            family: 'Poppins'
-                        }
+                            family: 'Poppins',
+                            size: 12
+                        },
+                        padding: 20,
+                        usePointStyle: true,
+                        pointStyle: 'circle'
                     }
                 },
                 title: {
                     display: true,
                     text: 'Goals by Type',
-                    color: 'rgba(255, 255, 255, 0.9)',
+                    color: 'var(--text-dark)',
                     font: {
                         family: 'Lexend',
                         size: 16,
                         weight: 600
+                    },
+                    padding: {
+                        bottom: 20
                     }
                 }
             }
@@ -331,7 +338,7 @@ function updateCharts() {
                     colors['in-progress'],
                     colors.overdue
                 ],
-                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderColor: 'rgba(0, 0, 0, 0.1)',
                 borderWidth: 1,
                 borderRadius: 8
             }]
@@ -346,11 +353,14 @@ function updateCharts() {
                 title: {
                     display: true,
                     text: 'Goals Progress',
-                    color: 'rgba(255, 255, 255, 0.9)',
+                    color: 'var(--text-dark)',
                     font: {
                         family: 'Lexend',
                         size: 16,
                         weight: 600
+                    },
+                    padding: {
+                        bottom: 20
                     }
                 }
             },
@@ -359,20 +369,22 @@ function updateCharts() {
                     beginAtZero: true,
                     ticks: {
                         precision: 0,
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: 'var(--text-dark)',
                         font: {
-                            family: 'Poppins'
+                            family: 'Poppins',
+                            size: 12
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
+                        color: 'rgba(0, 0, 0, 0.1)'
                     }
                 },
                 x: {
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.7)',
+                        color: 'var(--text-dark)',
                         font: {
-                            family: 'Poppins'
+                            family: 'Poppins',
+                            size: 12
                         }
                     },
                     grid: {
@@ -627,42 +639,33 @@ document.addEventListener('DOMContentLoaded', () => {
 function animateParticles() {
     const particles = document.querySelector('.particles');
     
-    // Create additional particle effects
-    for (let i = 0; i < 20; i++) {
+    // Clear existing particles
+    particles.innerHTML = '';
+    
+    // Create particles with different sizes and animations
+    const particleCount = 30;
+    const sizes = [3, 5, 8, 12, 15];
+    const durations = [15, 20, 25, 30, 35];
+    
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
+        
+        // Randomize particle properties
+        const size = sizes[Math.floor(Math.random() * sizes.length)];
+        const duration = durations[Math.floor(Math.random() * durations.length)];
+        const delay = Math.random() * -20;
+        
         particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 10 + 3}px;
-            height: ${Math.random() * 10 + 3}px;
-            background: rgba(255, 255, 255, ${Math.random() * 0.2 + 0.1});
-            border-radius: 50%;
+            width: ${size}px;
+            height: ${size}px;
             top: ${Math.random() * 100}%;
             left: ${Math.random() * 100}%;
-            animation: float-particle ${Math.random() * 20 + 10}s infinite ease-in-out;
-            animation-delay: ${Math.random() * 5}s;
-            opacity: ${Math.random() * 0.3 + 0.2};
+            --duration: ${duration}s;
+            --delay: ${delay}s;
+            opacity: ${Math.random() * 0.3 + 0.1};
         `;
+        
         particles.appendChild(particle);
     }
-    
-    // Add CSS animation for particles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes float-particle {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-            }
-            50% {
-                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-            }
-            75% {
-                transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-            }
-        }
-    `;
-    document.head.appendChild(style);
 }
